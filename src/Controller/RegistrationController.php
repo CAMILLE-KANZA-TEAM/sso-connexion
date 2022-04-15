@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginAuthenticator;
+use App\Services\SsoManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,15 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
+    private $ssoManager;
+
+    public function __construct(SsoManager $ssoManager)
+    {
+        $this->ssoManager = $ssoManager;
+    }
+
+
+
     /**
      * @Route("/register", name="app_register")
      */
@@ -44,8 +54,11 @@ class RegistrationController extends AbstractController
             );
         }
 
+        //dump($this->ssoManager->getProviders());
+
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'providers' => $this->ssoManager->getProviders(),
         ]);
     }
 }
