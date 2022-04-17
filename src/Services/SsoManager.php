@@ -10,25 +10,27 @@ class SsoManager
 
     public function __construct()
     {
+
+
         $this->config = [
             /**
              * Set the Authorization callback URL to https://path/to/hybridauth/examples/example_06/callback.php.
              * Understandably, you need to replace 'path/to/hybridauth' with the real path to this script.
              */
-            'callback' => 'http://localhost:8001/callback/callback.php',
+            'callback' => 'http://localhost:8002/callback/',
             'providers' => [
                 'Google' => [
                     'enabled' => true,
                     'keys' => [
-                        'key' => 'xxxxxxxxxxxx',
-                        'secret' => 'ooooooood',
+                        'key' => '197341954286-jespr46sh8lncvnfr3jhfr0gijr0nsr5.apps.googleusercontent.com',
+                        'secret' => '-3xQR7ze4LjUC4kbOkhE5oFl',
                     ],
                 ],
                 'LinkedIn' => [
                     'enabled' => true,
                     'keys' => [
-                        'id' => 'aaaaxxx',
-                        'secret' => 'oooooooo',
+                        'id' => '86pioes1rmblwc',
+                        'secret' => '2JRHS2AufWnuFRTc',
                     ],
                 ]
             ],

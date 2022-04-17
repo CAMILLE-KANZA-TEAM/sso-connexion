@@ -14,9 +14,13 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
-class RegistrationController extends AbstractController
+class RegisterController extends AbstractController
 {
+    /**
+     * @var SsoManager
+     */
     private $ssoManager;
+
 
     public function __construct(SsoManager $ssoManager)
     {
@@ -53,8 +57,6 @@ class RegistrationController extends AbstractController
                 $request
             );
         }
-
-        //dump($this->ssoManager->getProviders());
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),

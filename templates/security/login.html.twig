@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<section class="masthead text-white text-center page-section" id="contact">
+<section class="masthead text-center page-section" id="contact">
     <div class="container">
         <form method="post">
             {% if error %}
@@ -18,6 +18,15 @@
             {% endif %}
 
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+            <div class="wp-social-login-widget">
+                {% for providerName in providers %}
+                    <div class="wp-social-login-provider-list">
+                        <a class="wp-social-login-provider wp-social-login-provider-{{ providerName }}" href="{{ path("app_callback", {"provider": providerName}) }}">{{ providerName }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+
             <label for="inputEmail">Email</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
             <label for="inputPassword">Password</label>
