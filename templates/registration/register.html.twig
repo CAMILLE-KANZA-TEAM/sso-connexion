@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<section class="masthead text-white text-center page-section bg-info" id="contact">
+    <div class="container">
+        <h1>Register</h1>
+
+        <div class="wp-social-login-widget">
+            {% for providerName in providers %}
+                <div class="wp-social-login-provider-list">
+                    <a class="wp-social-login-provider wp-social-login-provider-{{ providerName }}" href="{{ path("app_callback", {"provider": providerName}) }}">{{ providerName }}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+</section>
+
+{% endblock %}
